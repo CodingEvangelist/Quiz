@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Play";
+}
+
+<div id="bodyContainer" ng-app="QuizApp">
+    <section id="content">
+        <div class="container" ng-controller="QuizCtrl">
+            <div class="row">
+                <div class="flip-container text-center col-md-12" ng-init="nextQuestion()">
+                    <div class="back" ng-class="{flip: answered, correct: correctAnswer, incorrect:!correctAnswer}">
+                        <p class="lead">{{answer()}}</p>
+                        <p>
+                            <button class="btn btn-info btn-lg next option" ng-click="nextQuestion()" ng-disabled="working">Next Question</button>
+                        </p>
+                    </div>
+                    <div class="front" ng-class="{flip: answered}">
+                        <p class="lead">{{title}}</p>
+                        <div class="row text-center">
+                            <button class="btn btn-info btn-lg option" ng-repeat="option in options" ng-click="sendAnswer(option)" ng-disabled="working">{{option.title}}</button>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="row" ng-hide="working">
+                <div class="panel panel-primary" style="width:70%; margin:20px">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Quiz Statistics für den {{statisticDate}}
+                        </h3>
+                    </div>
+                    <div class="panel-body" style="margin:0px; width:115%;">
+                        <div id="statisticBadge">
+                            <button type="button" class="btn btn-success">Richtig <span class="badge">{{statisticPassedCount}}</span></button>
+                            <button type="button" class="btn btn-danger">Falsch <span class="badge">{{statisticFailedCount}}</span></button>
+                        </div>
+                        <div id="Main" ng-hide="true">
+                            <a name="poll_bar" class="btn btn-sm btn-success">Richtig </a>
+                            <span name="poll_val">{{statisticPassedPercent}} % </span>
+                            <br />
+                            <a name="poll_bar" class="btn btn-sm btn-danger">Falsch </a>
+                            <span name="poll_val">{{statisticFailedPercent}} %</span>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </section>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/app/quiz-controller.js")
+}
