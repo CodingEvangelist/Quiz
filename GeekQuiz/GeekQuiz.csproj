@@ -196,6 +196,7 @@
     <Content Include="Content\css\Flip.css" />
     <Content Include="Content\css\Site.css" />
     <Content Include="Content\Flip.css" />
+    <Content Include="dummy.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
